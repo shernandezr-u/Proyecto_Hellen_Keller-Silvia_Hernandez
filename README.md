@@ -1,6 +1,6 @@
 # Sistema para el Centro Nacional de Educación Hellen Keller
 
-Es un **sistema de gestión académica y administrativa para el Centro Nacional de Educación Hellen Keller**. La plataforma web es diseñada para **centralizar y optimizar los procesos educativos** que ofrece la institución. 
+Es un sistema de gestión académica y administrativa para el Centro Nacional de Educación Hellen Keller. La plataforma web es diseñada para centralizar y optimizar los procesos educativos que ofrece la institución. 
 
 Permite la gestión de usuarios, programas educativos, terapias, y el seguimiento individualizado de estudiantes con necesidades especiales, garantizando accesibilidad y facilidad de uso para todos los perfiles del sistema.
 
