@@ -1,0 +1,83 @@
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark navbar-admin">
+  <div class="container-fluid">
+    <!-- Logotipo -->
+    <a class="navbar-brand" href="index.html">
+      <img src="/front-end/img/logo-outline.png" alt="Imagen del Logotipo de Centro Hellen Kelller">
+    </a>
+
+    <!-- Toggle button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarContent" aria-controls="navbarContent"
+      aria-expanded="false" aria-label="Alternar navegación">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Contenido desplegable -->
+    <div class="collapse navbar-collapse" id="navbarContent">
+
+      <!-- Enlaces izquierdos -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Inicio</a>
+        </li>
+        <li class="nav-item dropdown ms-3">
+          <a class="nav-link dropdown-toggle" href="#" id="menu-programas" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">Programas
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="menú de programas y terapias">
+            <li><a class="dropdown-item" href="#">Registro de programas y terapias</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Listado de programas y terapias</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown ms-3">
+          <a class="nav-link dropdown-toggle" href="#" id="menu-usuarios" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">Usuarios
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="menu de usuarios">
+            <li><a class="dropdown-item" href="#">Registro de usuarios</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Listado de usuarios</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <!-- Dropdown de notificaciones -->
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="notificacionDropdown" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-bell"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificacionDropdown">
+            <li class="dropdown-item d-flex align-items-center">
+              <div>
+                <p class="m-0 fw-bold">Nuevo contenido</p>
+                <small>Hoy</small>
+              </div>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li class="dropdown-item d-flex align-items-center">
+              <div>
+                <p class="m-0 fw-bold">Nueva película</p>
+                <small>Hoy</small>
+              </div>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Dropdown del Perfil -->
+        <li class="nav-item dropdown ms-3">
+          <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="perfilDropdown" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="/front-end/img/perfil.png"
+              class="rounded-circle me-1" alt="Perfil">
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+            <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
