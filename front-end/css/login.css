@@ -1,0 +1,36 @@
+body {
+    background-color: #0A3A5E;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+        }
+
+.login-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+}
+
+.login-container img {
+    width: 250px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.btn-custom {
+    background-color: #0A3A5E;
+    color: white;
+    width: 100%;
+    font-weight: 500;
+}
+
+.btn-custom:hover {
+    background-color: #195c88;
+    color: white;
+}
+
