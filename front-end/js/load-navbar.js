@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Cargar la barra de navegación
-    fetch('components/navbar-docente.html')
+    fetch('components/navbar-admin.html')
         .then(response => response.text())
         .then(data => {
             document.getElementById('navbar-container').innerHTML = data;

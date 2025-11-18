@@ -56,19 +56,15 @@ legend {
     background-color: var(--azul);
 }
 
-/* Personalizar el modal de SweetAlert2: .swal2-success .swal2-error .swal2-warning  .swal2-info .swal2-question */
 .swal2-icon.swal2-warning {
-    border-color: var(--fuscia);
-    /* Color del borde */
-    color: var(--fuscia);
-    /* Color del icono */
+    border-color: red;
+    color: var(red);
 }
 
 .swal2-confirm {
-    background-color: var(--fuscia);
+    background-color: var(--azul);
 }
 
 .swal2-confirm:hover {
-    background-color: var(--fuscia);
-    box-shadow: 0 4px 8px rgba(192, 31, 102, 0.3) !important;
+    background-color: var(--azulClaro);
 } 
