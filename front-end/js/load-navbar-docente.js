@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Cargar la barra de navegación
-    fetch('components/navbar-admin.html')
+    fetch('components/navbar-docente.html')
         .then(response => response.text())
         .then(data => {
-            document.getElementById('navbar-container').innerHTML = data;
+            document.getElementById('navbar-container-docente').innerHTML = data;
             
             // Después de cargar la navbar, resaltar la página activa
             const currentPage = window.location.pathname.split('/').pop() || 'index.html';
