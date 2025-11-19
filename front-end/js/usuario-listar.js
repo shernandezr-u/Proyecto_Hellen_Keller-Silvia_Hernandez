@@ -1,0 +1,31 @@
+const tablaUsuarios = document.getElementById("tblUsuarios").querySelector("tbody");
+
+async function cargarTabla() {
+    fetch("http://localhost:3000/usuarios", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then(response => response.json()
+    ).then(listaUsuarios => {
+        tablaUsuarios.innerHTML = ""; // Limpiar la tabla
+        listaUsuarios.forEach(usuario => {
+            const fila = document.createElement("tr");
+
+            // `: Comilla francesa, permite utilizar variables o expresiones en un string. Por ejemplo dentro de de la fila crear la celda (td) con lo datos de usuario traidos de la BD (interpolación de variables: Insertar variables o expresiones directamente dentro de una cadena utilizando la sintaxis ${}) 
+            fila.innerHTML = `
+                <td> ${usuario.nombre} </td>
+                <td> ${usuario.cedula} </td>
+                <td> ${usuario.correo} </td>
+                <td> ${usuario.celular} </td>
+                <td> ${usuario.rol} </td>
+                `;
+            tablaUsuarios.appendChild(fila); // Agregar la fila creada en la tabla
+        })
+
+    }).catch(error => {
+        console.log(error);
+    });
+}
+
+cargarTabla();
