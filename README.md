@@ -49,7 +49,6 @@ Los mensajes de commit deben seguir esta estructura:
 
 Se utiliza el modelo **Git Flow** simplificado:
 - `main`: contiene versiones estables y liberadas.
-- `develop`: integración de nuevas funcionalidades.
 - `feature/*`: desarrollo de características específicas.
 - `fix/*`: corrección de errores.
 - `docs/*`: cambios en documentación.
