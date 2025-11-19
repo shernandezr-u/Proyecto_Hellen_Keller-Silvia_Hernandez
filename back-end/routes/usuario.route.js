@@ -6,11 +6,11 @@ const bcrypt = require('bcryptjs');
 //Rutas para el CRUD de usuarios
 
 // POST: Crear un nuevo usuario con la contraseña encriptada para mayor seguridad
-router.post("/contrasenia-segura", async (req, res) => {
-    const {correo, nombre, cedula, celular, direccion, rol, contrasenia} = req.body;
+router.post("/", async (req, res) => {
+    const {nombre, cedula, correo, celular, direccion, rol, contrasenia} = req.body;
 
     // Validar que existan los datos que son obligatorios 
-    if (!correo || !nombre || !cedula || !celular || !direccion || !rol || !contrasenia) {
+    if (!nombre || !cedula || !correo || !celular || !direccion || !rol || !contrasenia) {
         return res.status(400).json({ mensaje: "Todos los campos son obligatorios" });
     }
 
@@ -22,15 +22,15 @@ router.post("/contrasenia-segura", async (req, res) => {
         Hash resultante: "$2b$10$s8S5Gf2xOcHj9kLmNqRvT.uVwXyZ1A2B3C4D5E6F7G8H9I0J1K2L3M4"
         */
 
-        const nuevoUsuario = new Usuario({ correo, nombre, cedula, celular, direccion, rol, contrasenia: hashedPassword });
+        const nuevoUsuario = new Usuario({nombre, cedula, correo, celular, direccion, rol, contrasenia: hashedPassword});
         await nuevoUsuario.save();
 
         // No retornar la contraseña en la respuesta
         const usuarioResponse = {
             id: nuevoUsuario._id,
-            correo: nuevoUsuario.correo,
             nombre: nuevoUsuario.nombre,
             cedula: nuevoUsuario.cedula,
+            correo: nuevoUsuario.correo,
             celular: nuevoUsuario.celular,
             direccion: nuevoUsuario.direccion,
             rol: nuevoUsuario.rol
@@ -69,9 +69,9 @@ router.post("/login-encriptado", async (req, res) => {
         // Si las credenciales son válidas, retornar datos del usuario (sin contraseña)
         const usuarioResponse = {
             id: usuario._id,
-            correo: usuario.correo,
             nombre: usuario.nombre,
             cedula: usuario.cedula,
+            correo: usuario.correo,
             celular: usuario.celular,
             direccion: usuario.direccion,
             rol: usuario.rol

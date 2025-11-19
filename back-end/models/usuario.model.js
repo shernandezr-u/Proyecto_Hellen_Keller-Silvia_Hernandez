@@ -1,21 +1,20 @@
 //Modelo (esqueleto, estructura) de lo que se almacenará en la base de datos
-//Usuario: correo (string), nombre (string), cédula (string), celular (number), direccion (string), rol (string), contraseña (string)
+//Usuario: nombre (string), cédula (string), correo (string), celular (number), direccion (string), rol (string), contraseña (string)
 
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-//Creación del esquema
 const usuarioSchema = new mongoose.Schema({
-    correo: {
-        type: String, 
-        required: true, 
-        unique: true
-    },
     nombre: {
         type: String, 
         required: true
     },
     cedula: {
+        type: String, 
+        required: true, 
+        unique: true
+    },
+    correo: {
         type: String, 
         required: true, 
         unique: true
@@ -30,7 +29,7 @@ const usuarioSchema = new mongoose.Schema({
     },
     rol: {
         type: String, 
-        enum: ["administrador", "docente"],
+        enum: ["Administrador", "Docente/Terapeuta"],
         required: true
     },
     contrasenia: {
