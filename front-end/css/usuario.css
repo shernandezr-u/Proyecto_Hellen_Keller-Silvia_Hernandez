@@ -63,6 +63,12 @@ legend {
     background-color: var(--azul);
 }
 
+.table-bordered th {
+    background-color: var(--azul);
+    color: white;
+    text-align: center;
+}
+
 .swal2-icon.swal2-warning {
     border-color: red;
     color: var(red);
