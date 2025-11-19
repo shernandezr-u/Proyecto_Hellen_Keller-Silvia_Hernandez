@@ -5,14 +5,29 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             document.getElementById('navbar-container-docente').innerHTML = data;
             
-            // Después de cargar la navbar, resaltar la página activa
-            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === currentPage) {
+            // Obtener ruta actual completa (sin dominio)
+            const currentPath = window.location.pathname;
+
+            // Selecciona todos los enlaces del navbar, incluyendo dropdowns
+            const allLinks = document.querySelectorAll('.navbar a');
+
+            allLinks.forEach(link => {
+                const href = link.getAttribute('href');
+
+                if (!href || href === "#") return;
+
+                // Comparación con ruta completa
+                if (currentPath.endsWith(href) || currentPath === href) {
+
+                    // Marcar activo el hijo
                     link.classList.add('active');
+
+                    // Si es dropdown-item: marcar padre también
+                    const parentDropdown = link.closest('.dropdown');
+                    if (parentDropdown) {
+                        const parentLink = parentDropdown.querySelector('.nav-link');
+                        if (parentLink) parentLink.classList.add('active');
+                    }
                 }
             });
         })
