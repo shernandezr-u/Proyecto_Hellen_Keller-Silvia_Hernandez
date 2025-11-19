@@ -38,14 +38,15 @@
     color: var(--turquesa);
 }
 
+
+.nav-link .bi-bell {
+  font-size: 1.2rem; /* o 24px si prefieres píxeles */
+}
+
 .dropdown {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.nav-link .bi-bell {
-  font-size: 1.2rem; /* o 24px si prefieres píxeles */
 }
 
 .dropdown img {
@@ -64,7 +65,7 @@
   color: var(--azul);
 }
 
-.dropdown-item:active {
+.dropdown-item.active {
   background-color: var(--azul);
   color: #fff;
 }
