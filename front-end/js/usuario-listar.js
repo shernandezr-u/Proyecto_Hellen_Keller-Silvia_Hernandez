@@ -18,6 +18,7 @@ async function cargarTabla() {
                 <td> ${usuario.cedula} </td>
                 <td> ${usuario.correo} </td>
                 <td> ${usuario.celular} </td>
+                <td> ${usuario.direccion} </td>
                 <td> ${usuario.rol} </td>
                 `;
             tablaUsuarios.appendChild(fila); // Agregar la fila creada en la tabla
