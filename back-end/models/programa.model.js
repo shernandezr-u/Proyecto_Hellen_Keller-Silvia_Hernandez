@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const programaSchema = new mongoose.Schema({
-    nombre: {
+    nombrePrograma: {
         type: String, 
         required: true,
         unique: true
@@ -18,7 +18,7 @@ const programaSchema = new mongoose.Schema({
         required: true
     },
     duracion: {
-        type: String, 
+        type: Number, 
         required: true
     },
     cupo: {

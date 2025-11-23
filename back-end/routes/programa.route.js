@@ -7,20 +7,31 @@ const Programa = require("../models/programa.model");
 //POST: Crear - enviar datos a la base de datos
 
 router.post("/", async (req, res) => {
-    const {nombre, descripcion, especialidad, duracion, cupo, prerequisitos, estado} = req.body;
-    if (!nombre || !descripcion || !especialidad || !duracion || !cupo || !prerequisitos || !estado) {
+    const {nombrePrograma, descripcion, especialidad, duracion, cupo, prerequisitos, estado} = req.body;
+    if (!nombrePrograma || !descripcion || !especialidad || !duracion || !cupo || !prerequisitos || !estado) {
         return res.status(400).json({ mensaje: "Todos los campos son obligatorios" });
     }
 
     //Crear un nuevo programa en la base de datos
 
     try {
-        const nuevoPrograma = new Programa({nombre, descripcion, especialidad, duracion, cupo, prerequisitos, estado});
+        const nuevoPrograma = new Programa({nombrePrograma, descripcion, especialidad, duracion, cupo, prerequisitos, estado});
         await nuevoPrograma.save();
-        res.status(201).json(nuevoPrograma); //201: El recurso fue creado correctamente
+        res.status(201).json(nuevoPrograma);
     } catch (error) {
-        res.status(400).json({mensajeError: error.message});
+
+    // Error por nombre duplicado
+    if (error.code === 11000) {
+        return res.status(400).json({
+            mensajeError: "Ya existe un programa con ese nombre."
+        });
     }
+
+    res.status(500).json({
+        mensajeError: "Ocurrió un error en el servidor",
+        detalle: error.message
+    });
+}
 
 });
 
