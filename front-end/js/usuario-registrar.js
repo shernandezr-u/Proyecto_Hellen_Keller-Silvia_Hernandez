@@ -9,6 +9,7 @@ const btnGuardar = document.querySelector("#btnGuardar");
 
 const inputsRequeridos = document.querySelectorAll("input[required]");
 
+// Validar campos antes de registrar
 function validar() {
     let error = false;
     inputsRequeridos.forEach(input => {

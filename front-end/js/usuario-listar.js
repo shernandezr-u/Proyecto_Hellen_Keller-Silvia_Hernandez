@@ -11,6 +11,7 @@ async function cargarTabla() {
         tablaUsuarios.innerHTML = ""; // Limpiar la tabla
         listaUsuarios.forEach(usuario => {
             const fila = document.createElement("tr");
+            fila.classList.add("align-middle");
 
             // `: Comilla francesa, permite utilizar variables o expresiones en un string. Por ejemplo dentro de de la fila crear la celda (td) con lo datos de usuario traidos de la BD (interpolación de variables: Insertar variables o expresiones directamente dentro de una cadena utilizando la sintaxis ${}) 
             fila.innerHTML = `
@@ -20,7 +21,9 @@ async function cargarTabla() {
                 <td> ${usuario.celular} </td>
                 <td> ${usuario.direccion} </td>
                 <td> ${usuario.rol} </td>
+                <td class="text-center"><a href="usuario-editar.html?id=${usuario._id}" class="btn btn-primary btn-sm">Editar</a></td>
                 `;
+
             tablaUsuarios.appendChild(fila); // Agregar la fila creada en la tabla
         })
 

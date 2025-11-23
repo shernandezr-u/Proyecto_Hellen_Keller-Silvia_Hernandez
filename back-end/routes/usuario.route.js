@@ -97,52 +97,62 @@ router.get("/", async (req, res) => {
     }
 })
 
-//GET: Obtener el usuario con el número de cédula definido
+//GET: Obtener el usuario por el id
 
-router.get("/buscar-por-cedula", async (req, res) => {
-    const { cedula } = req.body;
-
-    if (!cedula) {
-        return res.status(400).json({ mensajeError: "La cédula es obligatoria" });
-    }
-
+router.get("/:id", async (req, res) => {
     try {
-        const usuario = await Usuario.findOne({cedula});
-        if (!usuario) {
-            return res.status(404).json({mensajeError: "No se encontró un usuario con la cédula proporcionada"});
-        }
+        const usuario = await Usuario.findById(req.params.id);
         res.json(usuario);
     } catch (error) {
-        res.status(500).json({mensajeError: "Error en el servidor al buscar usuario", error: error.message}); //500: Error del servidor
+        res.status(500).json({ error: error.message });
     }
-})
-
-//DELETE: Eliminar un usuario por cédula
-
-router.delete("/eliminar-por-cedula", async (req, res) => {
-    const { cedula } = req.body;
-
-    if (!cedula) {
-        return res.status(400).json({ msj: "El campo 'cédula' es obligatorio en el cuerpo de la solicitud" });
-    }
-
-    try {
-        const resultado = await Usuario.deleteOne({cedula});
-        
-        if (resultado.deletedCount === 0) {
-            return res.status(404).json({msj: "No se encontró un usuario con la cédula proporcionada"});
-        }
-        res.json({ 
-            msj: "Usuario eliminado correctamente",
-            cedula: cedula,
-        registrosEliminados: resultado.deletedCount
-    });
-    } catch (error) {
-        res.status(500).json({mensajeError: "Error en el servidor al eliminar usuario", error: error.message});
-    }
-
 });
 
+// PUT: Actualizar un usuario por id
+router.put("/:id", async (req, res) => {
+    const { id } = req.params;
+    const { nombre, cedula, correo, celular, direccion, rol } = req.body;
+
+    try {
+        // Verificar si la cédula pertenece a otro usuario
+        const cedulaExistente = await Usuario.findOne({ cedula });
+
+        if (cedulaExistente && cedulaExistente._id.toString() !== id) {
+            return res.status(409).json({
+                success: false,
+                mensaje: "Existe otro usuario con la cédula indicada"
+            });
+        }
+
+        const usuarioActualizado = await Usuario.findByIdAndUpdate(
+            id,
+            { nombre, cedula, correo, celular, direccion, rol },
+            { new: true }
+        );
+
+        if (!usuarioActualizado) {
+            return res.status(404).json({
+                success: false,
+                mensaje: "Usuario no encontrado"
+            });
+        }
+
+        res.json({
+            success: true,
+            mensaje: "Usuario actualizado correctamente",
+            usuario: usuarioActualizado
+        });
+
+    } catch (error) {
+    console.error("Error actualizando usuario:", error);
+
+    res.status(500).json({
+        success: false,
+        mensaje: "Error actualizando usuario",
+        error: error.message
+    });
+}
+});
 
 //Exportar la ruta
 
