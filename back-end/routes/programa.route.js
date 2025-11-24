@@ -46,6 +46,64 @@ router.get("/", async (req, res) => {
     }
 })
 
+//GET: Obtener el programa por el id
+
+router.get("/:id", async (req, res) => {
+    try {
+        const programa = await Programa.findById(req.params.id);
+        res.json(programa);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// PUT: Actualizar un programa por id
+router.put("/:id", async (req, res) => {
+    const { id } = req.params;
+    const { nombrePrograma, descripcion, especialidad, duracion, cupo, prerequisitos, estado } = req.body;
+
+    try {
+        // Verificar si el nombre del programa pertenece a otro programa
+        const programaExistente = await Programa.findOne({ nombrePrograma });
+
+        if (programaExistente && programaExistente._id.toString() !== id) {
+            return res.status(409).json({
+                success: false,
+                mensaje: "Existe otro programa/terapia con el nombre indicado"
+            });
+        }
+
+        const programaActualizado = await Programa.findByIdAndUpdate(
+            id,
+            { nombrePrograma, descripcion, especialidad, duracion, cupo, prerequisitos, estado },
+            { new: true }
+        );
+
+        if (!programaActualizado) {
+            return res.status(404).json({
+                success: false,
+                mensaje: "Programa no encontrado"
+            });
+        }
+
+        res.json({
+            success: true,
+            mensaje: "Programa/terapia actualizada correctamente",
+            usuario: programaActualizado
+        });
+
+    } catch (error) {
+    console.error("Error actualizando programa:", error);
+
+    res.status(500).json({
+        success: false,
+        mensaje: "Error actualizando programa",
+        error: error.message
+    });
+}
+});
+
+
 //Exportar la ruta
 
 module.exports = router;

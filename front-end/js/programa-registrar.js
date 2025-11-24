@@ -64,6 +64,7 @@ function registrarPrograma() {
         icon: "success",
         confirmButtonText: "Aceptar"
     });
+    limpiarFormularioPrograma();
 })
 .catch(error => {
     console.log(error);
@@ -75,6 +76,16 @@ function registrarPrograma() {
     });
 });
 
+}
+
+function limpiarFormularioPrograma() {
+    inputNombrePrograma.value = "";
+    inputDescripcion.value = "";
+    inputEspecialidad.value = "";
+    inputDuracion.value = "";
+    inputCupo.value = "";
+    inputPrerequisitos.value = "";
+    inputEstado.selectedIndex = 0;
 }
 
 btnGuardar.addEventListener("click", validar);
