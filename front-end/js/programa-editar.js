@@ -6,6 +6,7 @@ const inputNombrePrograma = document.getElementById("nombrePrograma");
 const inputDescripcion = document.getElementById("descripcion");
 const inputEspecialidad = document.getElementById("especialidad");
 const inputDuracion = document.getElementById("duracion");
+const inputRecursos = document.getElementById("recursos");
 const inputCupo = document.getElementById("cupo");
 const inputPrerequisitos = document.getElementById("prerequisitos");
 const inputEstado = document.getElementById("estado");
@@ -21,6 +22,7 @@ async function cargarDatosPrograma() {
         inputDescripcion.value = programa.descripcion;
         inputEspecialidad.value = programa.especialidad;
         inputDuracion.value = programa.duracion;
+        inputRecursos.value = programa.recursos;
         inputCupo.value = programa.cupo;
         inputPrerequisitos.value = programa.prerequisitos;
         inputEstado.value = programa.estado;
@@ -41,6 +43,7 @@ document.getElementById("formEditarPrograma").addEventListener("submit", async f
         descripcion: inputDescripcion.value,
         especialidad: inputEspecialidad.value,
         duracion: inputDuracion.value,
+        recursos: inputRecursos.value,
         cupo: inputCupo.value,
         prerequisitos: inputPrerequisitos.value,
         estado: inputEstado.value  

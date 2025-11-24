@@ -21,6 +21,10 @@ const programaSchema = new mongoose.Schema({
         type: Number, 
         required: true
     },
+    recursos: {
+        type: String,
+        required: true
+    },
     cupo: {
         type: Number, 
         required: true
