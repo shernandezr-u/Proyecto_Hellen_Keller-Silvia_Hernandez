@@ -7,15 +7,15 @@ const Programa = require("../models/programa.model");
 //POST: Crear - enviar datos a la base de datos
 
 router.post("/", async (req, res) => {
-    const {nombrePrograma, descripcion, especialidad, duracion, cupo, prerequisitos, estado} = req.body;
-    if (!nombrePrograma || !descripcion || !especialidad || !duracion || !cupo || !prerequisitos || !estado) {
+    const {nombrePrograma, descripcion, especialidad, duracion, recursos, cupo, prerequisitos, estado} = req.body;
+    if (!nombrePrograma || !descripcion || !especialidad || !duracion || !recursos || !cupo || !prerequisitos || !estado) {
         return res.status(400).json({ mensaje: "Todos los campos son obligatorios" });
     }
 
     //Crear un nuevo programa en la base de datos
 
     try {
-        const nuevoPrograma = new Programa({nombrePrograma, descripcion, especialidad, duracion, cupo, prerequisitos, estado});
+        const nuevoPrograma = new Programa({nombrePrograma, descripcion, especialidad, duracion, recursos, cupo, prerequisitos, estado});
         await nuevoPrograma.save();
         res.status(201).json(nuevoPrograma);
     } catch (error) {
@@ -60,7 +60,7 @@ router.get("/:id", async (req, res) => {
 // PUT: Actualizar un programa por id
 router.put("/:id", async (req, res) => {
     const { id } = req.params;
-    const { nombrePrograma, descripcion, especialidad, duracion, cupo, prerequisitos, estado } = req.body;
+    const { nombrePrograma, descripcion, especialidad, duracion, recursos, cupo, prerequisitos, estado } = req.body;
 
     try {
         // Verificar si el nombre del programa pertenece a otro programa
@@ -75,7 +75,7 @@ router.put("/:id", async (req, res) => {
 
         const programaActualizado = await Programa.findByIdAndUpdate(
             id,
-            { nombrePrograma, descripcion, especialidad, duracion, cupo, prerequisitos, estado },
+            { nombrePrograma, descripcion, especialidad, duracion, recursos, cupo, prerequisitos, estado },
             { new: true }
         );
 

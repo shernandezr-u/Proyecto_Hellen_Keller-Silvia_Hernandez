@@ -19,6 +19,7 @@ async function cargarTabla() {
                 <td> ${programa.descripcion} </td>
                 <td> ${programa.especialidad} </td>
                 <td> ${programa.duracion} </td>
+                <td> ${programa.recursos} </td>
                 <td> ${programa.cupo} </td>
                 <td> ${programa.prerequisitos} </td>
                 <td> ${programa.estado} </td>
