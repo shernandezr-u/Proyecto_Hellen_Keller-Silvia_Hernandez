@@ -13,6 +13,7 @@ const PORT = process.env.PORT || 3000; //Usar el puerto indicado en .env o si no
 
 const usuarioRoute = require('./routes/usuario.route');
 const programaRoute = require('./routes/programa.route');
+const peiRoute = require('./routes/pei.route');
 
 app.use(express.json());//Habilita el manejo de JSON en las peticiones
 app.use(bodyParser.urlencoded({extended:true}));
@@ -30,6 +31,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 app.use("/usuarios", usuarioRoute); //Es lo que va a utilizar el servidor para comunicarse con la base de datos
 app.use("/programas", programaRoute);
+app.use("/pei", peiRoute);
 
 app.get('/', (req,res)=> {
     res.send('Servidor en funcionamiento');
