@@ -20,7 +20,10 @@ async function cargarTabla() {
                 <td> ${pei.adaptaciones} </td>
                 <td> ${pei.criterioAprobacion} </td>
                 <td> ${pei.porcentajeAvance} </td>
-                <td class="text-center"><a href="pei-editar.html?id=${pei._id}" class="btn btn-primary btn-sm">Editar</a></td>
+                <td class="text-center">
+                    <a href="pei-editar.html?id=${pei._id}" class="btn btn-primary btn-sm">Editar</a>
+                    <a href="pei-avance.html?id=${pei._id}" class="btn btn-secondary btn-sm ms-2">Avance</a>
+                </td>
                 `;
 
             tablaPEI.appendChild(fila); // Agregar la fila creada en la tabla

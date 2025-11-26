@@ -63,6 +63,15 @@ legend {
     width: 100px;
 }
 
+.btn-secondary {
+    background-color: var(--celeste) !important;
+    margin: 5px;
+    padding: 10px;
+    font-weight: 500;
+    color: black;
+    width: 100px;
+}
+
 .btn-cancelar {
     background-color: var(--grisOscuro);
     border-color: var(--gris);
