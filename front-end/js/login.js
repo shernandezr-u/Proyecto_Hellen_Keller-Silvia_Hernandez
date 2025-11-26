@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let data = {};
         try { data = JSON.parse(text); }
-        catch { console.log("❌ No es JSON válido"); }
+        catch { console.log("No es JSON válido"); }
 
         if (!res.ok || !data.success) {
             Swal.fire({
@@ -89,10 +89,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const user = data.usuario;
         sessionStorage.setItem("usuario", JSON.stringify(user));
 
-        if (user.rol === "administrador") {
+        if (user.rol === "Administrador") {
             window.location.href = "/admin/inicio.html";
         } 
-        else if (user.rol === "docente") {
+        else if (user.rol === "Docente/Terapeuta") {
             window.location.href = "/docente/inicio.html";
         } 
         else {
