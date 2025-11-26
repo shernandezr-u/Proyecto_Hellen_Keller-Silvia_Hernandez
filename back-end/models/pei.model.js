@@ -7,10 +7,6 @@ const peiSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    nombreEstudiante: {
-        type: String, 
-        required: true, 
-    },
     objetivos: {
         type: String, 
         required: true, 

@@ -7,15 +7,15 @@ const PEI = require("../models/pei.model");
 //POST: Crear - enviar datos a la base de datos
 
 router.post("/", async (req, res) => {
-    const {nombrePEI, nombreEstudiante, objetivos, adaptaciones, criterioAprobacion, porcentajeAvance} = req.body;
-    if (!nombrePEI || !nombreEstudiante || !objetivos || !adaptaciones || !criterioAprobacion || !porcentajeAvance) {
+    const {nombrePEI, objetivos, adaptaciones, criterioAprobacion, porcentajeAvance} = req.body;
+    if (!nombrePEI || !objetivos || !adaptaciones || !criterioAprobacion || !porcentajeAvance) {
         return res.status(400).json({ mensaje: "Todos los campos son obligatorios" });
     }
 
     //Crear un nuevo PEI en la base de datos
 
     try {
-        const nuevoPEI = new PEI({nombrePEI, nombreEstudiante, objetivos, adaptaciones, criterioAprobacion, porcentajeAvance});
+        const nuevoPEI = new PEI({nombrePEI, objetivos, adaptaciones, criterioAprobacion, porcentajeAvance});
         await nuevoPEI.save();
         res.status(201).json(nuevoPEI);
     } catch (error) {
@@ -60,7 +60,7 @@ router.get("/:id", async (req, res) => {
 // PUT: Actualizar un PEI por id
 router.put("/:id", async (req, res) => {
     const { id } = req.params;
-    const { nombrePEI, nombreEstudiante, objetivos, adaptaciones, criterioAprobacion, porcentajeAvance } = req.body;
+    const { nombrePEI, objetivos, adaptaciones, criterioAprobacion, porcentajeAvance } = req.body;
 
     try {
         // Verificar si el nombre del programa pertenece a otro programa
@@ -75,7 +75,7 @@ router.put("/:id", async (req, res) => {
 
         const peiActualizado = await PEI.findByIdAndUpdate(
             id,
-            { nombrePEI, nombreEstudiante, objetivos, adaptaciones, criterioAprobacion, porcentajeAvance },
+            { nombrePEI, objetivos, adaptaciones, criterioAprobacion, porcentajeAvance },
             { new: true }
         );
 

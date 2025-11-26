@@ -1,5 +1,4 @@
 const inputNombrePEI = document.getElementById("nombrePEI");
-const inputNombreEstudiante = document.getElementById("nombreEstudiante");
 const inputObjetivos = document.getElementById("objetivos");
 const inputAdaptaciones = document.getElementById("adaptaciones");
 const inputCriterioAprobacion = document.getElementById("criterioAprobacion");
@@ -30,7 +29,6 @@ function validar() {
 function registrarPEI() {
     const datosNuevoPEI = {
         nombrePEI: inputNombrePEI.value,
-        nombreEstudiante: inputNombreEstudiante.value,
         objetivos: inputObjetivos.value,
         adaptaciones: inputAdaptaciones.value,
         criterioAprobacion: inputCriterioAprobacion.value,
@@ -78,11 +76,10 @@ function registrarPEI() {
 
 function limpiarFormularioPEI() {
     inputNombrePEI.value = "";
-    inputNombreEstudiante.value = "";
+    inputObjetivos.value = "";
     inputAdaptaciones.value = "";
     inputCriterioAprobacion.value = "";
     inputPorcentajeAvance.value = "";
-    inputObjetivos.value = "";
 }
 
 btnGuardar.addEventListener("click", validar);
