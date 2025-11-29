@@ -4,7 +4,7 @@
     --turquesa: #14D9A5;
     --celeste: #14CAD9;
     --verde: #57D914;
-    --grisOscuro: #7c7b75;
+    --grisOscuro: #575652;
     --gris: #F2F2F2;
     font-family: sans-serif;
 }
@@ -88,6 +88,14 @@ legend {
     text-align: center;
 }
 
+#tblProgramas tbody td:nth-child(4) {
+    text-align: center;
+}
+
+#tblProgramas tbody td:nth-child(6) {
+    text-align: center;
+}
+
 #tblPEI tbody td:nth-child(5) {
     text-align: center;
 }
@@ -104,3 +112,49 @@ legend {
 .swal2-confirm:hover {
     background-color: var(--azulClaro);
 } 
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: black !important;
+    }
+
+    h1 {
+        color: white !important;
+    }
+
+    .form-container {
+        background-color: var(--grisOscuro) !important;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.1) !important;
+    }
+
+    .form-control, .form-select {
+        background-color: black !important;
+        color: white !important;
+        border-color: white !important;
+    }
+
+    .form-label {
+        color: var(--gris);
+        font-weight: 500;
+    }
+
+    table.table {
+        --bs-table-color: white !important;
+        --bs-table-striped-color: white !important;
+        --bs-table-hover-color: var(--gris) !important;
+        font-weight: 500;
+    }
+
+    .table-hover{
+        --bs-table-hover-bg: var(--grisOscuro) !important;
+        color: white !important;
+    }
+
+    .form-control:disabled {
+        color: #959595 !important;
+    }
+
+    .form-control::placeholder {
+        color: #959595 !important;
+    }
+}
