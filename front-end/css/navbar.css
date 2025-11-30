@@ -4,7 +4,7 @@
   --turquesa: #14D9A5;
   --celeste: #14CAD9;
   --verde: #57D914;
-  --grisOscuro: #7c7b75;
+  --grisOscuro: #575652;
   --gris: #F2F2F2;
   font-family: sans-serif;
 }
@@ -91,8 +91,26 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  body {
-    background-color: black;
+  .navbar {
+    background-color: black !important;
     color: white;
+  }
+
+  .dropdown-menu {
+    background-color: black;
+  }
+
+  .dropdown-item {
+    color: white;
+  }
+
+  .dropdown-item:hover {
+    background-color: var(--grisOscuro);
+    color: white;
+  }
+
+  .dropdown-item.active {
+    background-color: var(--azul) !important;
+    color: white !important;
   }
 }
