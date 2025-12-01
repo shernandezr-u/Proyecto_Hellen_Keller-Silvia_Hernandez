@@ -46,6 +46,23 @@ router.get("/", async (req, res) => {
     }
 })
 
+// GET: Estadísticas de programas
+router.get("/estadisticas", async (req, res) => {
+    try {
+        const totalProgramas = await Programa.countDocuments();
+        const programasActivos = await Programa.countDocuments({ estado: "Activo" });
+        const programasInactivos = await Programa.countDocuments({ estado: "Inactivo" });
+
+        res.json({
+            totalProgramas,
+            programasActivos,
+            programasInactivos
+        });
+    } catch (error) {
+        res.status(500).json({ message: "Error obteniendo estadísticas", error });
+    }
+});
+
 //GET: Obtener el programa por el id
 
 router.get("/:id", async (req, res) => {

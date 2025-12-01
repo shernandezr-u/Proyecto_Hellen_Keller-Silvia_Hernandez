@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Administrador</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+
+    <nav id="navbar-container-admin"></nav>
+
+    <header class="dashboard-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8 d-flex align-items-center">
+                    <h1><i class="bi bi-bar-chart-line me-3"></i>Dashboard del administrador</h1>
+                </div>
+                <div class="col-md-4 text-end">
+                    <button id="refreshBtn" class="btn btn-outline-light">
+                        <i class="bi bi-arrow-clockwise me-2"></i>Actualizar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Loading Spinner -->
+        <div id="loadingSpinner" class="loading-spinner">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Cargando</span>
+            </div>
+            <p class="mt-2">Cargando datos del dashboard</p>
+        </div>
+
+        <!-- Error Message -->
+        <div id="errorMessage" class="error-message">
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            <span id="errorText">Error al cargar los datos</span>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div id="dashboardContent">
+            <!-- Stats Cards -->
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="card stat-card">
+                        <div class="card-body text-center">
+                            <div class="stat-icon text-primary">
+                                <i class="bi bi-people-fill"></i>
+                            </div>
+                            <h2 class="stat-number" id="totalUsuarios">0</h2>
+                            <p class="text-muted">Total de usuarios</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card stat-card">
+                        <div class="card-body text-center">
+                            <div class="stat-icon text-secondary">
+                                <i class="bi bi-buildings-fill"></i>
+                            </div>
+                            <h2 class="stat-number" id="totalAdmins">0</h2>
+                            <p class="text-muted">Administradores</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card stat-card">
+                        <div class="card-body text-center">
+                            <div class="stat-icon text-warning">
+                                <i class="bi bi-book"></i>
+                            </div>
+                            <h2 class="stat-number" id="totalDocentes">0</h2>
+                            <p class="text-muted">Docentes/Terapeutas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="card stat-card">
+                        <div class="card-body text-center">
+                            <div class="stat-icon text-primary">
+                                <i class="bi bi-clipboard-fill"></i>
+                            </div>
+                            <h2 class="stat-number" id="totalProgramas">0</h2>
+                            <p class="text-muted">Total de programas/terapias</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card stat-card">
+                        <div class="card-body text-center">
+                            <div class="stat-icon text-success">
+                                <i class="bi bi-clipboard2-check-fill"></i>
+                            </div>
+                            <h2 class="stat-number" id="programasActivos">0</h2>
+                            <p class="text-muted">Total de programas/terapias activas</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card stat-card">
+                        <div class="card-body text-center">
+                            <div class="stat-icon text-danger">
+                                <i class="bi bi-clipboard-x-fill"></i>
+                            </div>
+                            <h2 class="stat-number" id="programasInactivos">0</h2>
+                            <p class="text-muted">Total de programas/terapias inactivas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           <!-- Acciones rápidas -->
+            
+            <div class ="accion-container">
+                <div class="row mt-4 g-4">
+                    <div class="col-md-4">
+                        <h3>Acciones rápidas</h3>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="/front-end/usuario-registrar.html" class="btn btnAccion btn-lg">
+                            <i class="bi bi-plus-circle"></i>
+                            Crear Usuario
+                        </a>
+                     </div>
+
+                        
+                    <div class="col-md-4">
+                        <a href="/front-end/programa-registrar.html" class="btn btnAccion btn-lg">
+                            <i class="bi bi-plus-circle"></i>
+                            Crear Programa/Terapia
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/dashboard-admin.js"></script>
+    <script src="js/load-navbar-admin.js"></script>
+
+</body>
+
+</html>

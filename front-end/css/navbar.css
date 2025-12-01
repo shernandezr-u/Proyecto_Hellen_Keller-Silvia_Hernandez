@@ -61,7 +61,8 @@
 }
 
 .dropdown-item:hover {
-  color: var(--azul);
+  background-color: var(--grisOscuro);
+  color: white;
 }
 
 .dropdown-item:active {
