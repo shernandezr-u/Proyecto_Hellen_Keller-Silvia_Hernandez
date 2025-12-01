@@ -46,6 +46,37 @@ router.get("/", async (req, res) => {
     }
 })
 
+//GET: Obtener estadísticas de PEI
+
+router.get("/estadisticas", async (req, res) => {
+    try {
+        const peis = await PEI.find();
+
+        const totalPEIs = peis.length;
+
+        // Promedio de porcentaje de avance
+        const sumaAvance = peis.reduce((acc, pei) => acc + (pei.porcentajeAvance || 0), 0);
+        const promedioAvance = totalPEIs > 0 ? (sumaAvance / totalPEIs) : 0;
+
+        // PEIs por completar (avance < 100)
+        const peisPorCompletar = peis.filter(pei => pei.porcentajeAvance < 100).length;
+
+        // PEIs en proceso (avance > 0 y < 100)
+        const peisCompletados = peis.filter(pei => pei.porcentajeAvance === 100).length;
+
+        res.json({
+            totalPEIs,
+            promedioAvance: promedioAvance.toFixed(0),
+            peisPorCompletar,
+            peisCompletados
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Error obteniendo estadísticas de PEIs" });
+    }
+});
+
 //GET: Obtener el PEI por el id
 
 router.get("/:id", async (req, res) => {

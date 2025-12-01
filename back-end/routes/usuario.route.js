@@ -97,6 +97,24 @@ router.get("/", async (req, res) => {
     }
 })
 
+//GET: Obtener estadísticas de usuarios
+
+router.get("/estadisticas", async (req, res) => {
+    try {
+        const totalUsuarios = await Usuario.countDocuments();
+        const totalAdmins = await Usuario.countDocuments({ rol: "Administrador" });
+        const totalDocentes = await Usuario.countDocuments({ rol: "Docente/Terapeuta" });
+
+        res.json({
+            totalUsuarios,
+            totalAdmins,
+            totalDocentes
+        });
+    } catch (error) {
+        res.status(500).json({ message: "Error obteniendo estadísticas", error });
+    }
+});
+
 //GET: Obtener el usuario por el id
 
 router.get("/:id", async (req, res) => {
@@ -153,6 +171,8 @@ router.put("/:id", async (req, res) => {
     });
 }
 });
+
+
 
 //Exportar la ruta
 
