@@ -20,9 +20,11 @@ const peiSchema = new mongoose.Schema({
         required: true
     },
     porcentajeAvance: {
-        type: Number,
-        required: true
-    }
+    type: Number,
+    required: true,
+    min: 0,
+    max: 100
+}
     
 });
 

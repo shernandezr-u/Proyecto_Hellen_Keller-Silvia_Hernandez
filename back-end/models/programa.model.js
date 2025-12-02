@@ -27,7 +27,9 @@ const programaSchema = new mongoose.Schema({
     },
     cupo: {
         type: Number, 
-        required: true
+        required: true,
+        min: 0,
+        max: 8
     },
     prerequisitos: {
         type: String, 

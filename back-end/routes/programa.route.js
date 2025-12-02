@@ -12,6 +12,14 @@ router.post("/", async (req, res) => {
         return res.status(400).json({ mensaje: "Todos los campos son obligatorios" });
     }
 
+    // Validar rango permitido para cupos
+    if (cupo < 0 || cupo > 8) {
+        return res.status(400).json({
+            success: false,
+            mensaje: "El cupo máximo permitido es 8",
+        });
+    }
+
     //Crear un nuevo programa en la base de datos
 
     try {
@@ -80,6 +88,15 @@ router.put("/:id", async (req, res) => {
     const { nombrePrograma, descripcion, especialidad, duracion, recursos, cupo, prerequisitos, estado } = req.body;
 
     try {
+
+        // Validar rango permitido para cupos (0-8)
+        if (cupo < 0 || cupo > 8) {
+            return res.status(400).json({
+                success: false,
+                mensaje: "El cupo debe estar entre 0 y 8"
+            });
+        }
+
         // Verificar si el nombre del programa pertenece a otro programa
         const programaExistente = await Programa.findOne({ nombrePrograma });
 

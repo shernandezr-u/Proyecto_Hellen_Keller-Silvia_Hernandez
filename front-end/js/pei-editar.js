@@ -32,12 +32,23 @@ cargarDatosPEI();
 document.getElementById("formEditarPEI").addEventListener("submit", async function (e) {
     e.preventDefault();
 
+    const porcentaje = Number(inputPorcentajeAvance.value);
+
+    if (porcentaje < 0 || porcentaje > 100) {
+        Swal.fire({
+            icon: "error",
+            title: "Porcentaje inválido",
+            text: "El porcentaje de avance debe estar entre 0 y 100.",
+        });
+        return;
+    }
+
     const peiActualizado = {
         nombrePEI: inputNombrePEI.value,
         objetivos: inputObjetivos.value,
         adaptaciones: inputAdaptaciones.value,
         criterioAprobacion: inputCriterioAprobacion.value,
-        porcentajeAvance: inputPorcentajeAvance.value 
+        porcentajeAvance: Number(inputPorcentajeAvance.value)
     };
 
     try {
