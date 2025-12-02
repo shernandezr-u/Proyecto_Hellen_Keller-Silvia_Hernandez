@@ -59,3 +59,25 @@
     justify-content: center;
     margin-bottom: 20px;
 }
+
+@media (prefers-color-scheme: dark) {
+    .loading-spinner {
+        color: white;
+    }
+
+    .card-body {
+        background-color: var(--grisOscuro);
+    }
+
+    .card-body p {
+        color: white !important;
+    }   
+
+    .stat-number {
+        color: white;
+    }
+
+    h3 {
+        color: white !important;
+    }
+}
