@@ -24,6 +24,20 @@ function validar() {
             });
         }
     }
+
+    // Validar rango permitido 0–100 para porcentaje
+    const cupo = Number(inputCupo.value);
+
+    if (cupo < 0 || cupo > 8) {
+        Swal.fire({
+            icon: "error",
+            title: "Cantidad de cupos inválida",
+            text: "La cantidad de cupos no puede ser mayor a 8.",
+            confirmButtonText: "Aceptar"
+        });
+        return;
+    }
+
     if (error == false) {
         registrarPrograma();
     }

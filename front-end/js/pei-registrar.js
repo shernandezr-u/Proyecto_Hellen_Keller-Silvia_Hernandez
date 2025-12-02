@@ -10,20 +10,35 @@ const inputsRequeridos = document.querySelectorAll("input[required], textarea[re
 // Validar campos antes de registrar
 function validar() {
     let error = false;
+
+    // Validar campos vacíos
     for (let i = 0; i < inputsRequeridos.length; i++) {
-        if (inputsRequeridos[i].value == "") {
+        if (inputsRequeridos[i].value.trim() === "") {
             error = true;
             Swal.fire({
                 icon: "warning",
-                title: "No se puede registrar el programa",
+                title: "Campos incompletos",
                 text: "Por favor complete todos los campos.",
                 confirmButtonText: "Aceptar"
             });
+            return;
         }
     }
-    if (error == false) {
-        registrarPEI();
+
+    // Validar rango permitido 0–100 para porcentaje
+    const porcentaje = Number(inputPorcentajeAvance.value);
+
+    if (porcentaje < 0 || porcentaje > 100) {
+        Swal.fire({
+            icon: "error",
+            title: "Porcentaje inválido",
+            text: "El porcentaje de avance debe estar entre 0 y 100.",
+            confirmButtonText: "Aceptar"
+        });
+        return;
     }
+
+    registrarPEI();
 }
 
 function registrarPEI() {

@@ -38,6 +38,17 @@ cargarDatosPrograma();
 document.getElementById("formEditarPrograma").addEventListener("submit", async function (e) {
     e.preventDefault();
 
+    const cupo = Number(inputCupo.value);
+
+    if (cupo < 0 || cupo > 8) {
+        Swal.fire({
+            icon: "error",
+            title: "Cantidad de cupos inválida",
+            text: "La cantidad de cupos no puede ser mayor a 8.",
+        });
+        return;
+    }
+
     const programaActualizado = {
         nombrePrograma: inputNombrePrograma.value,
         descripcion: inputDescripcion.value,

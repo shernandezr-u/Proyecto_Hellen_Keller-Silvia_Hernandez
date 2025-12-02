@@ -7,9 +7,18 @@ const PEI = require("../models/pei.model");
 //POST: Crear - enviar datos a la base de datos
 
 router.post("/", async (req, res) => {
+
     const {nombrePEI, objetivos, adaptaciones, criterioAprobacion, porcentajeAvance} = req.body;
     if (!nombrePEI || !objetivos || !adaptaciones || !criterioAprobacion || !porcentajeAvance) {
         return res.status(400).json({ mensaje: "Todos los campos son obligatorios" });
+    }
+
+    // Validar rango permitido 0–100 para porcentaje
+    if (porcentajeAvance < 0 || porcentajeAvance > 100) {
+        return res.status(400).json({
+            success: false,
+            mensaje: "El porcentaje de avance debe estar entre 0 y 100"
+        });
     }
 
     //Crear un nuevo PEI en la base de datos
@@ -26,6 +35,14 @@ router.post("/", async (req, res) => {
             mensajeError: "Ya existe un programa con ese nombre."
         });
     }
+
+    // Validar porcentaje de avance dentro del rango 0-100
+    if (porcentajeAvance < 0 || porcentajeAvance > 100) {
+            return res.status(400).json({
+                success: false,
+                mensaje: "El porcentaje de avance debe estar entre 0 y 100"
+            });
+        }
 
     res.status(500).json({
         mensajeError: "Ocurrió un error en el servidor",
@@ -91,9 +108,24 @@ router.get("/:id", async (req, res) => {
 // PUT: Actualizar un PEI por id
 router.put("/:id", async (req, res) => {
     const { id } = req.params;
+
+    // Convertir porcentaje a número
+    if (req.body.porcentajeAvance !== undefined) {
+    req.body.porcentajeAvance = Number(req.body.porcentajeAvance);
+}
+
     const { nombrePEI, objetivos, adaptaciones, criterioAprobacion, porcentajeAvance } = req.body;
 
     try {
+
+        //Validar porcentaje de avance dentro del rango 0-100
+        if (porcentajeAvance !== undefined && (porcentajeAvance < 0 || porcentajeAvance > 100)) {
+            return res.status(400).json({
+                success: false,
+                mensaje: "El porcentaje de avance debe estar entre 0 y 100"
+            });
+        }
+
         // Verificar si el nombre del programa pertenece a otro programa
         const peiExistente = await PEI.findOne({ nombrePEI });
 
@@ -116,12 +148,6 @@ router.put("/:id", async (req, res) => {
                 mensaje: "PEI no encontrado"
             });
         }
-
-        res.json({
-            success: true,
-            mensaje: "PEI actualizada correctamente",
-            usuario: peiActualizado
-        });
 
     } catch (error) {
     console.error("Error actualizando programa:", error);
