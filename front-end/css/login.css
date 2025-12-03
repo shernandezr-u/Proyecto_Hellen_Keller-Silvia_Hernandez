@@ -45,6 +45,15 @@ body {
     color: white;
 }
 
+.btn-eye {
+    border-color: #dee2e6;
+}
+
+.btn-eye:hover {
+    background-color: var(--gris);
+}
+
+
 @media (prefers-color-scheme: dark) {
     body {
         background-color: black !important;
