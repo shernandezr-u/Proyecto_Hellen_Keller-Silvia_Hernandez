@@ -16,8 +16,19 @@ document.addEventListener("DOMContentLoaded", () => {
   limpiarErrorInput(usuarioInput);
   limpiarErrorInput(contraseniaInput);
 
-  // Ver/ocultar contraseña
+  // Toggle mostrar/ocultar contraseña
+  togglePassword.addEventListener("click", function () {
+    const type = contraseniaInput.getAttribute("type") === "password" ? "text" : "password";
+    contraseniaInput.setAttribute("type", type);
 
+    const icon = togglePassword.querySelector("i");
+      if (icon) {
+        icon.classList.toggle("bi-eye");
+        icon.classList.toggle("bi-eye-slash");
+      }
+    });
+
+  // Manejar el submit del formulario
   formulario.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -45,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Si es válido - enviar al servidor
     try {
-        const res = await fetch("/usuarios/login-encriptado", {
+        const res = await fetch("http://localhost:3000/usuarios/login-encriptado", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -56,51 +67,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
         console.log("STATUS:", res.status);
 
-        const text = await res.text();
-        console.log("RESPUESTA RAW:", text);
-
-        let data = {};
-        try { data = JSON.parse(text); }
-        catch { console.log("No es JSON válido"); }
-
-        if (!res.ok || !data.success) {
-            Swal.fire({
-            icon: "error",
-            title: "Usuario o contraseña inválida",
-            text: "Por favor verifique sus credenciales.",
-            confirmButtonColor: "#0b3c5d",
-            });
-            return;
-        }
-
-        /*const data = await res.json();
+        const data = await res.json();
 
         if (!res.ok || !data.success) {
             Swal.fire({
                 icon: "error",
                 title: "Usuario o contraseña inválida",
                 text: "Por favor verifique sus credenciales.",
-                confirmButtonColor: "#0b3c5d",
         });
             return;
-      }*/
+      }
 
-        // Login exitoso → redirigir según rol
-        const user = data.usuario;
-        sessionStorage.setItem("usuario", JSON.stringify(user));
+      // Login exitoso redirigir según rol
+      const user = data.usuario;
+      sessionStorage.setItem("usuario", JSON.stringify(user));
 
-        if (user.rol === "Administrador") {
-            window.location.href = "/admin/inicio.html";
-        } 
-        else if (user.rol === "Docente/Terapeuta") {
-            window.location.href = "/docente/inicio.html";
-        } 
-        else {
-            window.location.href = "/inicio.html";
-        }
-
-        } catch (error) {
+      if (user.rol === "Administrador") {
+        window.location.href = "dashboard-admin.html";
+      } 
+      else if (user.rol === "Docente/Terapeuta") {
+        window.location.href = "dashboard-docente.html";
+      } 
+      else {
+        window.location.href = "login.html";
+      }
+      } catch (error) {
         Swal.fire("Error", "No se pudo conectar con el servidor", "error");
-        }
-    });
-    });
+      }
+  });
+});

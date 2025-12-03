@@ -33,6 +33,7 @@ app.use("/usuarios", usuarioRoute); //Es lo que va a utilizar el servidor para c
 app.use("/programas", programaRoute);
 app.use("/pei", peiRoute);
 
+
 app.get('/', (req,res)=> {
     res.send('Servidor en funcionamiento');
 });
