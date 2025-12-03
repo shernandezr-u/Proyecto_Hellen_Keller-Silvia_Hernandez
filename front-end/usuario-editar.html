@@ -16,7 +16,7 @@
 
         <h1 class="mt-5 mb-4">Editar Usuario</h1>
 
-        <form id="formEditarUsuario" class="row g-3">
+        <form id="formEditarUsuario" class="row g-3" novalidate>
 
             <input type="hidden" id="idUsuario">
 
@@ -42,7 +42,7 @@
 
             <div class="col-12">
                 <label class="form-label">Dirección</label>
-                <textarea id="direccion" class="form-control" rows="2" required></textarea>
+                <input type="text"  class="form-control" required></input>
             </div>
 
             <div class="col-12">
@@ -55,8 +55,8 @@
             </div>
 
             <div class="col-3 d-flex mt-3">
-                <button type="submit" class="btn btn-primary">Guardar</button>
-                <a href="usuario-listar.html" class="btn btn-primary btn-cancelar">Cancelar</a>
+                <button type="submit" class="btn btn-primary" aria-label="Botón para guardar cambios">Guardar</button>
+                <a href="usuario-listar.html" class="btn btn-primary btn-cancelar" aria-label="Botón para cancelar y volver a la página anterior">Cancelar</a>
             </div>
         
         </form>

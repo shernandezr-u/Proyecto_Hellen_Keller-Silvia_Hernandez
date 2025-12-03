@@ -16,11 +16,17 @@
 
 <body class="container-fluid">
     <!-- Contenedor para la barra de navegación -->
-    <nav id="navbar-container-docente"></nav>
+    <nav id="navbar-container-docente" aria-label="Barra de navegación del docente o terapeuta"></nav>
 
     <h1>Lista de Planes Educativos Individualizados</h1>
 
-    <table id="tblPEI" class="table table-striped table-hover table-bordered mt-5">
+    <table id="tblPEI" class="table table-striped table-hover table-bordered mt-5" role="table" aria-describedby="Descripcion Tabla de PEI">
+
+        <caption id="descripcionTablaPEI" class="visually-hidden">
+            Tabla con la lista de Planes Educativos Individualizados, incluyendo nombre del PEI, objetivos, adaptaciones,
+            criterios de aprobación, porcentaje de avance y botón para editar.
+        </caption>
+
         <!-- Thead: encabezado de la tabla (nombre de las columnas) -->
         <thead>
             <!-- tr: Fila-->

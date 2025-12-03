@@ -17,6 +17,7 @@ function validar() {
             error = true;
         }
     });
+    
     if (inputRol.value === "" || inputRol.selectedIndex === 0) {
         error = true;
     }

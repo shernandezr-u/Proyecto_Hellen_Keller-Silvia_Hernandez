@@ -16,12 +16,17 @@
 
 <body class="container-fluid">
     <!-- Contenedor para la barra de navegación -->
-    <nav id="navbar-container-admin"></nav>
+    <nav id="navbar-container-admin" aria-label="Barra de navegación del administrador"></nav>
 
     <h1>Lista de usuarios</h1>
 
-    <table id="tblUsuarios" class="table table-striped table-hover table-bordered mt-5">
+    <table id="tblUsuarios" class="table table-striped table-hover table-bordered mt-5" role="table" aria-describedby="Descripcion Tabla de Programas">
         <!-- Thead: encabezado de la tabla (nombre de las columnas) -->
+
+        <caption id="descripcionTablaUsuarios" class="visually-hidden">
+            Tabla con la lista de usuarios, incluyendo nombre, cédula, correo electrónico, celular, dirección, rol, y botón para editar.
+        </caption>
+
         <thead>
             <!-- tr: Fila-->
             <tr>

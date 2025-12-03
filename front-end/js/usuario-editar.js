@@ -34,6 +34,20 @@ cargarDatos();
 document.getElementById("formEditarUsuario").addEventListener("submit", async function (e) {
     e.preventDefault();
 
+    const inputsRequeridos = document.querySelectorAll("[required]");
+
+    for (let input of inputsRequeridos) {
+        if (input.value.trim() === "") {
+            Swal.fire({
+                icon: "warning",
+                title: "Campos incompletos",
+                text: "Por favor complete todos los campos.",
+                confirmButtonText: "Aceptar"
+            });
+            return;
+        }
+    }
+
     const usuarioActualizado = {
         nombre: inputNombre.value,
         cedula: inputCedula.value,
@@ -53,11 +67,12 @@ document.getElementById("formEditarUsuario").addEventListener("submit", async fu
         const data = await res.json();
 
         //Error de cédula duplicada
+        // Validar duplicados (correo o cédula)
         if (res.status === 409) {
             Swal.fire({
                 icon: "error",
-                title: "Cédula duplicada",
-                text: "Existe otro usuario con la cédula indicada.",
+                title: "Dato duplicado",
+                text: data.mensaje
             });
             return;
         }
@@ -72,7 +87,7 @@ document.getElementById("formEditarUsuario").addEventListener("submit", async fu
             return;
         }
 
-        //Usduario actualizado con éxito
+        //Usuario actualizado con éxito
         Swal.fire({
             icon: "success",
             title: "Usuario actualizado",

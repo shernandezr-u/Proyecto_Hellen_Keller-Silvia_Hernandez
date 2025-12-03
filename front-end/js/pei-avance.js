@@ -26,6 +26,18 @@ cargarDatosPEI();
 document.getElementById("formEditarPEI").addEventListener("submit", async function (e) {
     e.preventDefault();
 
+    // Validar campo requerido vacío
+    if (inputPorcentajeAvance.value.trim() === "") {
+        inputPorcentajeAvance.focus();
+        Swal.fire({
+            icon: "warning",
+            title: "Campo requerido",
+            text: "Debe ingresar un porcentaje de avance.",
+        });
+        return;
+    }
+
+    // Validar rango permitido 0–100 para porcentaje
     const porcentaje = Number(inputPorcentajeAvance.value);
 
         if (porcentaje < 0 || porcentaje > 100) {
