@@ -5,7 +5,7 @@ const inputCriterioAprobacion = document.getElementById("criterioAprobacion");
 const inputPorcentajeAvance = document.getElementById("porcentajeAvance");
 const btnGuardar = document.querySelector("#btnGuardar");
 
-const inputsRequeridos = document.querySelectorAll("input[required], textarea[required]");
+const inputsRequeridos = document.querySelectorAll("input[required]");
 
 // Validar campos antes de registrar
 function validar() {

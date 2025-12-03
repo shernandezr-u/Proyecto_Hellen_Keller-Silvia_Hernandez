@@ -12,11 +12,11 @@
 
 <body>
 
-    <main class="form-container ">
+    <main class="form-container">
         
         <h1 class="mt-5 mb-4">Editar Programa/Terapia</h1>
 
-        <form id="formEditarPrograma" class="row g-3">
+        <form id="formEditarPrograma" class="row g-3" novalidate>
 
             <input type="hidden" id="idPrograma">
 
@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="duracion" class="form-label">Duración (en semanas):</label>
+                    <label for="duracion" class="form-label">Duración (en meses):</label>
                     <input type="number" id="duracion" required class="form-control">
                 </div>
 
@@ -64,8 +64,8 @@
                 </div>
 
             <div class="col-3 d-flex mt-3">
-                <button type="submit" class="btn btn-primary">Guardar</button>
-                <a href="programa-listar.html" class="btn btn-primary btn-cancelar">Cancelar</a>
+                <button type="submit" class="btn btn-primary" aria-label="Botón para guardar cambios">Guardar</button>
+                <a href="programa-listar.html" class="btn btn-primary btn-cancelar" aria-label="Botón para cancelar y volver a la página anterior">Cancelar</a>
             </div>
         
         </form>

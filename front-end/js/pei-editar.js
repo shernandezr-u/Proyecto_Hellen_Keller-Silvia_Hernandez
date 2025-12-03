@@ -32,6 +32,22 @@ cargarDatosPEI();
 document.getElementById("formEditarPEI").addEventListener("submit", async function (e) {
     e.preventDefault();
 
+    // Validar campos requeridos vacíos
+    const inputsRequeridos = document.querySelectorAll("[required]");
+
+    for (let input of inputsRequeridos) {
+        if (input.value.trim() === "") {
+            Swal.fire({
+                icon: "warning",
+                title: "Campos incompletos",
+                text: "Por favor complete todos los campos.",
+                confirmButtonText: "Aceptar"
+            });
+            return;
+        }
+    }
+
+    // Validar rango permitido 0–100 para porcentaje
     const porcentaje = Number(inputPorcentajeAvance.value);
 
     if (porcentaje < 0 || porcentaje > 100) {

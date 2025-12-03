@@ -126,7 +126,7 @@ router.put("/:id", async (req, res) => {
             });
         }
 
-        // Verificar si el nombre del programa pertenece a otro programa
+        // Verificar si el nombre del plan pertenece a otro plan
         const peiExistente = await PEI.findOne({ nombrePEI });
 
         if (peiExistente && peiExistente._id.toString() !== id) {
@@ -148,6 +148,12 @@ router.put("/:id", async (req, res) => {
                 mensaje: "PEI no encontrado"
             });
         }
+
+        return res.json({
+            success: true,
+            mensaje: "PEI actualizado correctamente",
+            pei: peiActualizado
+        });
 
     } catch (error) {
     console.error("Error actualizando programa:", error);

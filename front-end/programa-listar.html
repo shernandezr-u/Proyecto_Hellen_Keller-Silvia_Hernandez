@@ -16,11 +16,17 @@
 
 <body class="container-fluid">
     <!-- Contenedor para la barra de navegación -->
-    <nav id="navbar-container-admin"></nav>
+    <nav id="navbar-container-admin" aria-label="Barra de navegación del administrador"></nav>
 
     <h1>Lista de programas/terapias</h1>
 
-    <table id="tblProgramas" class="table table-striped table-hover table-bordered mt-5">
+    <table id="tblProgramas" class="table table-striped table-hover table-bordered mt-5" role="table" aria-describedby="Descripcion Tabla de Programas">
+        
+        <caption id="descripcionTablaProgramas" class="visually-hidden">
+            Tabla con la lista de programas o terapias, incluyendo nombre, descripción, especialidad,
+            duración, recursos necesarios, cupos disponibles, prerequisitos, estado y botón para editar.
+        </caption>
+
         <!-- Thead: encabezado de la tabla (nombre de las columnas) -->
         <thead>
             <!-- tr: Fila-->

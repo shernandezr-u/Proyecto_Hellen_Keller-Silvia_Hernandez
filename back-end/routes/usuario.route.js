@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 
 //Rutas para el CRUD de usuarios
 
-// POST: Crear un nuevo usuario con la contraseña encriptada para mayor seguridad
+// POST: Crear un nuevo usuario con la contraseña encriptada
 router.post("/", async (req, res) => {
     const {nombre, cedula, correo, celular, direccion, rol, contrasenia} = req.body;
 
@@ -138,7 +138,19 @@ router.put("/:id", async (req, res) => {
         if (cedulaExistente && cedulaExistente._id.toString() !== id) {
             return res.status(409).json({
                 success: false,
+                tipo: "cedula",
                 mensaje: "Existe otro usuario con la cédula indicada"
+            });
+        }
+
+        // Verificar correo duplicado
+        const correoExistente = await Usuario.findOne({ correo });
+        
+        if (correoExistente && correoExistente._id.toString() !== id) {
+            return res.status(409).json({
+                success: false,
+                tipo: "correo",
+                mensaje: "Existe otro usuario con el correo indicado"
             });
         }
 

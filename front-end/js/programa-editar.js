@@ -38,6 +38,22 @@ cargarDatosPrograma();
 document.getElementById("formEditarPrograma").addEventListener("submit", async function (e) {
     e.preventDefault();
 
+    // Validar campos requeridos vacíos
+    const inputsRequeridos = document.querySelectorAll("[required]");
+
+    for (let input of inputsRequeridos) {
+        if (input.value.trim() === "") {
+            Swal.fire({
+                icon: "warning",
+                title: "Campos incompletos",
+                text: "Por favor complete todos los campos.",
+                confirmButtonText: "Aceptar"
+            });
+            return;
+        }
+    }
+
+    // Validar rango permitido 0–8 para cupo
     const cupo = Number(inputCupo.value);
 
     if (cupo < 0 || cupo > 8) {
