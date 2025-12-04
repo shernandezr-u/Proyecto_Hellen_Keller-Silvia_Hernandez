@@ -32,6 +32,21 @@ function validar() {
         return;
     }
 
+    // Validar formato de correo electrónico
+    const email = inputCorreo.value.trim();
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+        Swal.fire({
+            icon: "error",
+            title: "Correo inválido",
+            text: "Ingrese un correo electrónico con formato correcto (ejemplo@correo.com).",
+        });
+        inputCorreo.focus();
+        return; 
+    }
+
     registrarUsuario();
 }
 
